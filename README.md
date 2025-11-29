@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -30,6 +29,12 @@
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-glow': 'pulseGlow 2s ease-in-out infinite alternate',
                         'gradient': 'gradient 15s ease infinite',
+                        'shimmer': 'shimmer 2.5s infinite',
+                        'morph': 'morph 8s ease-in-out infinite',
+                        'tilt': 'tilt 10s infinite linear',
+                        'text-shine': 'textShine 2s ease-in-out infinite alternate',
+                        'rotate-3d': 'rotate3d 20s infinite linear',
+                        'float-3d': 'float3d 8s ease-in-out infinite',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -48,6 +53,33 @@
                             '0%': { backgroundPosition: '0% 50%' },
                             '50%': { backgroundPosition: '100% 50%' },
                             '100%': { backgroundPosition: '0% 50%' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        },
+                        morph: {
+                            '0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
+                            '50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
+                            '100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
+                        },
+                        tilt: {
+                            '0%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(0.5deg)' },
+                            '75%': { transform: 'rotate(-0.5deg)' },
+                        },
+                        textShine: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' },
+                        },
+                        rotate3d: {
+                            '0%': { transform: 'rotateY(0deg) rotateX(0deg)' },
+                            '100%': { transform: 'rotateY(360deg) rotateX(360deg)' },
+                        },
+                        float3d: {
+                            '0%, 100%': { transform: 'translateY(0px) rotateX(0deg) rotateY(0deg)' },
+                            '33%': { transform: 'translateY(-20px) rotateX(10deg) rotateY(5deg)' },
+                            '66%': { transform: 'translateY(10px) rotateX(-5deg) rotateY(-10deg)' },
                         }
                     },
                     backgroundSize: {
@@ -136,6 +168,185 @@
             background: rgba(59, 130, 246, 0.2);
             animation: float 15s infinite linear;
         }
+
+        /* Advanced Glass Effect */
+        .glass-advanced {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .dark .glass-advanced {
+            background: rgba(17, 24, 39, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Shimmer Effect */
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+
+        /* Morphing Shapes */
+        .morph-shape {
+            animation: morph 8s ease-in-out infinite;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        }
+
+        /* Text Shine Effect */
+        .text-shine {
+            background: linear-gradient(90deg, #000, #fff, #000);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 2s ease-in-out infinite alternate;
+        }
+        .dark .text-shine {
+            background: linear-gradient(90deg, #fff, #3b82f6, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Gradient Border */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, #3b82f6, #ec4899) border-box;
+            border: 2px solid transparent;
+        }
+        .dark .gradient-border {
+            background: linear-gradient(#1f2937, #1f2937) padding-box,
+                        linear-gradient(45deg, #3b82f6, #ec4899) border-box;
+        }
+
+        /* Tilt Effect */
+        .tilt-card {
+            transition: transform 0.3s ease;
+        }
+        .tilt-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+
+        /* Staggered Animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Parallax Scrolling */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* NEW 3D EFFECTS */
+
+        /* 3D Card Flip */
+        .card-3d {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card-3d-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card-3d:hover .card-3d-inner {
+            transform: rotateY(180deg);
+        }
+        .card-3d-front, .card-3d-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-3d-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+
+        /* 3D Button */
+        .btn-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 0 0 rgba(37, 99, 235, 0.8);
+        }
+        .btn-3d:hover {
+            transform: translateY(5px);
+            box-shadow: 0 5px 0 0 rgba(37, 99, 235, 0.8);
+        }
+        .btn-3d:active {
+            transform: translateY(10px);
+            box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.8);
+        }
+
+        /* 3D Navigation */
+        .nav-3d {
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+        .nav-item-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
+        }
+        .nav-item-3d:hover {
+            transform: translateZ(20px);
+        }
+
+        /* 3D Floating Elements */
+        .floating-3d {
+            animation: float-3d 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        /* 3D Parallax Effect */
+        .parallax-3d {
+            transform-style: preserve-3d;
+        }
+        .parallax-3d-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+        .parallax-3d-layer-1 {
+            transform: translateZ(-100px) scale(2);
+        }
+        .parallax-3d-layer-2 {
+            transform: translateZ(-50px) scale(1.5);
+        }
+        .parallax-3d-layer-3 {
+            transform: translateZ(0px) scale(1);
+        }
+
+        /* 3D Rotating Elements */
+        .rotate-3d {
+            animation: rotate-3d 20s infinite linear;
+            transform-style: preserve-3d;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300 font-sans selection:bg-primary-500 selection:text-white">
@@ -143,8 +354,11 @@
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 bg-white dark:bg-gray-950 z-[100] flex items-center justify-center transition-opacity duration-500">
         <div class="text-center">
-            <div class="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 class="text-xl font-bold">NexGen Ultra</h2>
+            <div class="relative">
+                <div class="w-20 h-20 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 border-4 border-secondary-500 border-b-transparent rounded-full animate-spin" style="animation-direction: reverse;"></div>
+            </div>
+            <h2 class="text-xl font-bold gradient-text">NexGen Ultra</h2>
             <p class="text-gray-500 mt-2">Loading next generation experience...</p>
         </div>
     </div>
@@ -152,13 +366,13 @@
     <!-- Scroll Progress Bar -->
     <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 z-[60]" id="scroll-progress" style="width: 0%"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass border-b border-gray-200 dark:border-gray-800 transition-all duration-300" id="navbar">
+    <!-- Navigation with 3D Effects -->
+    <nav class="fixed w-full z-50 glass border-b border-gray-200 dark:border-gray-800 transition-all duration-300 nav-3d" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <div class="flex items-center gap-2 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <div class="bg-primary-600 text-white p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
+                <div class="flex items-center gap-2 cursor-pointer group nav-item-3d" onclick="window.scrollTo(0,0)">
+                    <div class="bg-primary-600 text-white p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
                         <i data-lucide="layers" class="h-6 w-6"></i>
                     </div>
                     <span class="font-bold text-xl tracking-tight">NexGen<span class="text-primary-600">Ultra</span></span>
@@ -166,44 +380,48 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#stats" class="hover:text-primary-600 transition-colors relative group">
+                    <a href="#stats" class="hover:text-primary-600 transition-colors relative group nav-item-3d">
                         Stats
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#portfolio" class="hover:text-primary-600 transition-colors relative group">
-                        Portfolio
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="#pricing" class="hover:text-primary-600 transition-colors relative group">
-                        Pricing
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="#features" class="hover:text-primary-600 transition-colors relative group">
+                    <a href="#features" class="hover:text-primary-600 transition-colors relative group nav-item-3d">
                         Features
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#faq" class="hover:text-primary-600 transition-colors relative group">
+                    <a href="#portfolio" class="hover:text-primary-600 transition-colors relative group nav-item-3d">
+                        Portfolio
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#pricing" class="hover:text-primary-600 transition-colors relative group nav-item-3d">
+                        Pricing
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#testimonials" class="hover:text-primary-600 transition-colors relative group nav-item-3d">
+                        Testimonials
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#faq" class="hover:text-primary-600 transition-colors relative group nav-item-3d">
                         FAQ
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors nav-item-3d">
                         <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
                         <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
                     </button>
 
-                    <button onclick="scrollToSection('contact')" class="btn-glow bg-primary-600 hover:bg-primary-700 text-white px-5 py-2 rounded-full font-medium transition-all">
+                    <button onclick="scrollToSection('contact')" class="btn-3d bg-primary-600 hover:bg-primary-700 text-white px-5 py-2 rounded-full font-medium transition-all">
                         Get Quote
                     </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center gap-4">
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 nav-item-3d">
                         <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
                         <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
                     </button>
-                    <button id="mobile-menu-btn" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 nav-item-3d">
                         <i data-lucide="menu" class="h-6 w-6"></i>
                     </button>
                 </div>
@@ -211,24 +429,36 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 absolute w-full">
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 absolute w-full glass">
             <div class="px-4 py-4 space-y-3">
                 <a href="#stats" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">Stats</a>
+                <a href="#features" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">Features</a>
                 <a href="#portfolio" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">Portfolio</a>
                 <a href="#pricing" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">Pricing</a>
-                <a href="#features" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">Features</a>
+                <a href="#testimonials" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">Testimonials</a>
                 <a href="#faq" onclick="toggleMobileMenu()" class="block text-lg font-medium hover:text-primary-600 transition-colors">FAQ</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Typewriter -->
-    <section class="pt-32 pb-20 px-4 text-center max-w-7xl mx-auto min-h-[80vh] flex flex-col justify-center items-center relative overflow-hidden">
+    <!-- Hero Section with Typewriter and 3D Elements -->
+    <section class="pt-32 pb-20 px-4 text-center max-w-7xl mx-auto min-h-[80vh] flex flex-col justify-center items-center relative overflow-hidden parallax-3d">
         <!-- Animated Background -->
         <div class="particles-container" id="particles-container"></div>
         
+        <!-- 3D Rotating Elements -->
+        <div class="rotate-3d absolute top-1/4 left-10 w-24 h-24 opacity-20 blur-xl -z-10">
+            <div class="w-full h-full bg-primary-500/20 rounded-lg"></div>
+        </div>
+        <div class="rotate-3d absolute bottom-1/4 right-10 w-32 h-32 opacity-20 blur-xl -z-10" style="animation-delay: -5s">
+            <div class="w-full h-full bg-secondary-500/20 rounded-full"></div>
+        </div>
+        <div class="rotate-3d absolute top-1/2 left-1/3 w-20 h-20 opacity-20 blur-xl -z-10" style="animation-delay: -10s">
+            <div class="w-full h-full bg-purple-500/20 rounded-lg"></div>
+        </div>
+        
         <div class="animate-fade-in-up relative z-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 text-sm font-semibold mb-6">
+            <span class="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 text-sm font-semibold mb-6 shimmer-effect">
                 v2.0 Now Available
             </span>
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
@@ -238,19 +468,19 @@
                 Experience the next generation of web interaction. Fully responsive, dark-mode ready, and packed with advanced features.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="scrollToSection('portfolio')" class="btn-glow px-8 py-4 rounded-full bg-primary-600 text-white font-bold hover:bg-primary-700 transition-all flex items-center justify-center gap-2 group">
+                <button onclick="scrollToSection('portfolio')" class="btn-3d px-8 py-4 rounded-full bg-primary-600 text-white font-bold hover:bg-primary-700 transition-all flex items-center justify-center gap-2 group">
                     View Work <i data-lucide="arrow-right" class="group-hover:translate-x-1 transition-transform"></i>
                 </button>
-                <button onclick="openVideoModal()" class="px-8 py-4 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-bold flex items-center justify-center gap-2">
+                <button onclick="openVideoModal()" class="gradient-border px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2">
                     <i data-lucide="play-circle" class="h-5 w-5"></i> Live Demo
                 </button>
             </div>
         </div>
         
-        <!-- Floating Elements Background (Decoration) -->
-        <div class="absolute top-1/4 left-10 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl animate-float -z-10"></div>
-        <div class="absolute bottom-1/4 right-10 w-32 h-32 bg-secondary-500/10 rounded-full blur-2xl animate-float -z-10" style="animation-delay: 2s"></div>
-        <div class="absolute top-1/2 left-1/3 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl animate-float -z-10" style="animation-delay: 4s"></div>
+        <!-- 3D Floating Elements Background -->
+        <div class="floating-3d absolute top-1/4 left-10 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl -z-10"></div>
+        <div class="floating-3d absolute bottom-1/4 right-10 w-32 h-32 bg-secondary-500/10 rounded-full blur-2xl -z-10" style="animation-delay: 2s"></div>
+        <div class="floating-3d absolute top-1/2 left-1/3 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl -z-10" style="animation-delay: 4s"></div>
         
         <!-- Scroll Indicator -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -262,26 +492,26 @@
     <section id="stats" class="py-16 bg-gradient-to-br from-primary-600 via-purple-600 to-secondary-600 text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-20"></div>
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
-            <div class="p-4 transform transition-all hover:scale-105">
+            <div class="p-4 transform transition-all hover:scale-105 stagger-item">
                 <div class="text-4xl md:text-5xl font-bold mb-2 count-up" data-target="250">0</div>
                 <div class="text-primary-100">Projects Done</div>
             </div>
-            <div class="p-4 transform transition-all hover:scale-105">
+            <div class="p-4 transform transition-all hover:scale-105 stagger-item">
                 <div class="text-4xl md:text-5xl font-bold mb-2 count-up" data-target="98">0</div>
                 <div class="text-primary-100">% Satisfaction</div>
             </div>
-            <div class="p-4 transform transition-all hover:scale-105">
+            <div class="p-4 transform transition-all hover:scale-105 stagger-item">
                 <div class="text-4xl md:text-5xl font-bold mb-2 count-up" data-target="15">0</div>
                 <div class="text-primary-100">Awards Won</div>
             </div>
-            <div class="p-4 transform transition-all hover:scale-105">
+            <div class="p-4 transform transition-all hover:scale-105 stagger-item">
                 <div class="text-4xl md:text-5xl font-bold mb-2 count-up" data-target="1200">0</div>
                 <div class="text-primary-100">Happy Clients</div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section with 3D Cards -->
     <section id="features" class="py-20 bg-white dark:bg-gray-900 transition-colors">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
@@ -290,65 +520,200 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="zap" class="h-6 w-6"></i>
+                <!-- Feature 1 with 3D Flip -->
+                <div class="card-3d h-64">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                                <i data-lucide="zap" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Optimized for performance with minimal code and efficient animations.</p>
+                        </div>
+                        <div class="card-3d-back flex items-center justify-center text-center">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
+                                <p class="text-white/90">Load times under 1 second with optimized assets and code splitting.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Optimized for performance with minimal code and efficient animations.</p>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="smartphone" class="h-6 w-6"></i>
+                <!-- Feature 2 with 3D Flip -->
+                <div class="card-3d h-64">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                                <i data-lucide="smartphone" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Fully Responsive</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Looks perfect on all devices from mobile to desktop.</p>
+                        </div>
+                        <div class="card-3d-back flex items-center justify-center text-center">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Fully Responsive</h3>
+                                <p class="text-white/90">Adapts to any screen size with mobile-first design principles.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Fully Responsive</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Looks perfect on all devices from mobile to desktop.</p>
                 </div>
                 
-                <!-- Feature 3 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="moon" class="h-6 w-6"></i>
+                <!-- Feature 3 with 3D Flip -->
+                <div class="card-3d h-64">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                                <i data-lucide="moon" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Dark Mode</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Automatic dark mode with system preference detection.</p>
+                        </div>
+                        <div class="card-3d-back flex items-center justify-center text-center">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Dark Mode</h3>
+                                <p class="text-white/90">Reduces eye strain and saves battery life on OLED screens.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Dark Mode</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Automatic dark mode with system preference detection.</p>
                 </div>
                 
-                <!-- Feature 4 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="code" class="h-6 w-6"></i>
+                <!-- Feature 4 with 3D Flip -->
+                <div class="card-3d h-64">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                                <i data-lucide="code" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Clean Code</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Well-structured, commented code that's easy to customize.</p>
+                        </div>
+                        <div class="card-3d-back flex items-center justify-center text-center">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Clean Code</h3>
+                                <p class="text-white/90">Follows best practices with semantic HTML and organized CSS.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Clean Code</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Well-structured, commented code that's easy to customize.</p>
                 </div>
                 
-                <!-- Feature 5 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="palette" class="h-6 w-6"></i>
+                <!-- Feature 5 with 3D Flip -->
+                <div class="card-3d h-64">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                                <i data-lucide="palette" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Customizable</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Easy to customize colors, fonts, and layouts to match your brand.</p>
+                        </div>
+                        <div class="card-3d-back flex items-center justify-center text-center">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Customizable</h3>
+                                <p class="text-white/90">Change colors, fonts, and layouts with simple CSS variables.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Customizable</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Easy to customize colors, fonts, and layouts to match your brand.</p>
                 </div>
                 
-                <!-- Feature 6 -->
-                <div class="card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="shield" class="h-6 w-6"></i>
+                <!-- Feature 6 with 3D Flip -->
+                <div class="card-3d h-64">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front card-hover bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-lg flex items-center justify-center mb-4">
+                                <i data-lucide="shield" class="h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">SEO Optimized</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Built with SEO best practices to help you rank higher.</p>
+                        </div>
+                        <div class="card-3d-back flex items-center justify-center text-center">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">SEO Optimized</h3>
+                                <p class="text-white/90">Semantic markup, fast loading, and accessibility features.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">SEO Optimized</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Built with SEO best practices to help you rank higher.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gray-50 dark:bg-gray-800/50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Don't just take our word for it. Here's what our clients have to say about our work.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 font-bold mr-4">
+                            JD
+                        </div>
+                        <div>
+                            <h4 class="font-bold">John Doe</h4>
+                            <p class="text-gray-500 text-sm">CEO, TechCorp</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 italic">"NexGen Ultra transformed our online presence. The website is fast, beautiful, and has significantly improved our conversion rates."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 font-bold mr-4">
+                            SJ
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-500 text-sm">Marketing Director</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 italic">"The attention to detail and modern design approach exceeded our expectations. Our users love the intuitive interface."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 font-bold mr-4">
+                            MR
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mike Roberts</h4>
+                            <p class="text-gray-500 text-sm">Founder, StartupXYZ</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 italic">"From concept to launch, the team was professional and delivered beyond our timeline. Highly recommended!"</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Filterable Portfolio -->
-    <section id="portfolio" class="py-20 px-4 max-w-7xl mx-auto bg-gray-50 dark:bg-gray-800/50 transition-colors">
+    <section id="portfolio" class="py-20 px-4 max-w-7xl mx-auto bg-white dark:bg-gray-900 transition-colors">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold mb-4">Our Creative Work</h2>
             <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">Explore our portfolio of cutting-edge projects across different industries and technologies.</p>
@@ -363,7 +728,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
             <!-- Items (Mock Data) -->
             <!-- Item 1: Web -->
-            <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover" data-category="web" onclick="openImageModal(this)">
+            <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover tilt-card" data-category="web" onclick="openImageModal(this)">
                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Web Project">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <span class="text-primary-400 text-sm font-bold uppercase">Web Design</span>
@@ -371,7 +736,7 @@
                 </div>
             </div>
             <!-- Item 2: App -->
-            <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover" data-category="app" onclick="openImageModal(this)">
+            <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover tilt-card" data-category="app" onclick="openImageModal(this)">
                 <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="App Project">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <span class="text-secondary-400 text-sm font-bold uppercase">Mobile App</span>
@@ -379,7 +744,7 @@
                 </div>
             </div>
             <!-- Item 3: Brand -->
-            <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover" data-category="brand" onclick="openImageModal(this)">
+            <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover tilt-card" data-category="brand" onclick="openImageModal(this)">
                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Brand Project">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <span class="text-green-400 text-sm font-bold uppercase">Branding</span>
@@ -387,7 +752,7 @@
                 </div>
             </div>
              <!-- Item 4: Web -->
-             <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover" data-category="web" onclick="openImageModal(this)">
+             <div class="portfolio-item group relative rounded-xl overflow-hidden aspect-video shadow-lg cursor-pointer card-hover tilt-card" data-category="web" onclick="openImageModal(this)">
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Web Project">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <span class="text-primary-400 text-sm font-bold uppercase">Web Design</span>
@@ -398,7 +763,7 @@
     </section>
 
     <!-- Pricing with Toggle -->
-    <section id="pricing" class="py-20 bg-white dark:bg-gray-900 transition-colors">
+    <section id="pricing" class="py-20 bg-gray-50 dark:bg-gray-800/50 transition-colors">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-6">Flexible Pricing</h2>
             <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Choose the plan that fits your needs. All plans include our core features with no hidden fees.</p>
@@ -414,7 +779,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Basic -->
-                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all">
+                <div class="card-hover tilt-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all">
                     <h3 class="text-xl font-bold mb-2">Freelancer</h3>
                     <div class="text-4xl font-extrabold mb-6 flex justify-center items-end">
                         $<span class="price-amount" data-monthly="29" data-yearly="24">29</span>
@@ -426,11 +791,11 @@
                         <li class="flex gap-2"><i data-lucide="check" class="text-primary-500 h-5 w-5"></i> Email Support</li>
                         <li class="flex gap-2"><i data-lucide="x" class="text-gray-400 h-5 w-5"></i> Advanced Features</li>
                     </ul>
-                    <button class="w-full py-3 rounded-lg bg-primary-100 dark:bg-gray-700 text-primary-700 dark:text-white font-bold hover:bg-primary-200 dark:hover:bg-gray-600 transition-colors">Select Plan</button>
+                    <button class="btn-3d w-full py-3 rounded-lg bg-primary-600 text-white font-bold hover:bg-primary-700 transition-colors">Select Plan</button>
                 </div>
 
                 <!-- Pro -->
-                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border-2 border-primary-500 transform md:-translate-y-4 animate-pulse-glow">
+                <div class="card-hover tilt-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border-2 border-primary-500 transform md:-translate-y-4 animate-pulse-glow">
                     <div class="bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">MOST POPULAR</div>
                     <h3 class="text-xl font-bold mb-2">Agency</h3>
                     <div class="text-4xl font-extrabold mb-6 flex justify-center items-end">
@@ -443,11 +808,11 @@
                         <li class="flex gap-2"><i data-lucide="check" class="text-primary-500 h-5 w-5"></i> Advanced SEO</li>
                         <li class="flex gap-2"><i data-lucide="check" class="text-primary-500 h-5 w-5"></i> Custom Domains</li>
                     </ul>
-                    <button class="btn-glow w-full py-3 rounded-lg bg-primary-600 text-white font-bold hover:bg-primary-700 transition-colors">Select Plan</button>
+                    <button class="btn-3d w-full py-3 rounded-lg bg-primary-600 text-white font-bold hover:bg-primary-700 transition-colors">Select Plan</button>
                 </div>
 
                 <!-- Enterprise -->
-                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all">
+                <div class="card-hover tilt-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all">
                     <h3 class="text-xl font-bold mb-2">Enterprise</h3>
                     <div class="text-4xl font-extrabold mb-6 flex justify-center items-end">
                         $<span class="price-amount" data-monthly="299" data-yearly="239">299</span>
@@ -459,14 +824,14 @@
                         <li class="flex gap-2"><i data-lucide="check" class="text-primary-500 h-5 w-5"></i> White-label Options</li>
                         <li class="flex gap-2"><i data-lucide="check" class="text-primary-500 h-5 w-5"></i> API Access</li>
                     </ul>
-                    <button class="w-full py-3 rounded-lg bg-primary-100 dark:bg-gray-700 text-primary-700 dark:text-white font-bold hover:bg-primary-200 dark:hover:bg-gray-600 transition-colors">Select Plan</button>
+                    <button class="btn-3d w-full py-3 rounded-lg bg-primary-600 text-white font-bold hover:bg-primary-700 transition-colors">Select Plan</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Accordion -->
-    <section id="faq" class="py-20 max-w-3xl mx-auto px-4 bg-gray-50 dark:bg-gray-800/50 transition-colors">
+    <section id="faq" class="py-20 max-w-3xl mx-auto px-4 bg-white dark:bg-gray-900 transition-colors">
         <h2 class="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
         <div class="space-y-4" id="faq-container">
             <!-- FAQ Item 1 -->
@@ -524,7 +889,7 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2 w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-8 rounded-2xl shadow-2xl">
+            <div class="md:w-1/2 w-full glass-advanced text-gray-900 dark:text-gray-100 p-8 rounded-2xl shadow-2xl">
                 <form onsubmit="handleContact(event)" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">Name</label>
@@ -538,7 +903,7 @@
                         <label class="block text-sm font-medium mb-1">Message</label>
                         <textarea rows="4" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:ring-2 focus:ring-primary-500 outline-none transition-all"></textarea>
                     </div>
-                    <button type="submit" class="btn-glow w-full bg-primary-600 text-white py-3 rounded-lg font-bold hover:bg-primary-700 transition-colors">Send Message</button>
+                    <button type="submit" class="btn-3d w-full bg-primary-600 text-white py-3 rounded-lg font-bold hover:bg-primary-700 transition-colors">Send Message</button>
                 </form>
             </div>
         </div>
@@ -589,7 +954,7 @@
             </div>
         </div>
         <!-- Toggle Button -->
-        <button onclick="toggleChat()" class="btn-glow w-14 h-14 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all">
+        <button onclick="toggleChat()" class="btn-3d w-14 h-14 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all">
             <i data-lucide="message-circle" class="h-6 w-6"></i>
         </button>
     </div>
@@ -630,6 +995,8 @@
                 document.getElementById('preloader').style.opacity = '0';
                 setTimeout(() => {
                     document.getElementById('preloader').style.display = 'none';
+                    // Initialize staggered animations
+                    initStaggerAnimations();
                 }, 500);
             }, 1000);
         });
@@ -661,6 +1028,17 @@
             }
         }
         createParticles();
+
+        // Staggered animations
+        function initStaggerAnimations() {
+            const staggerItems = document.querySelectorAll('.stagger-item');
+            staggerItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }
 
         // Theme Logic
         const html = document.documentElement;
@@ -981,4 +1359,3 @@
     </script>
 </body>
 </html>
-can you make this kind of code for me with other topic
